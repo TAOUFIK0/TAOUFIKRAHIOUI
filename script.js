@@ -78,6 +78,8 @@ window.addEventListener('scroll', function() {
     const form = document.querySelector('#contactForm') || document.querySelector('.contact-form');
     if (!form) return;
 
+    const FALLBACK_TO_EMAIL = 'taoufik.rahioui@usmba.ac.ma';
+
     const submitBtn = form.querySelector('button[type="submit"]');
 
     const getCfg = () => {
@@ -111,17 +113,39 @@ window.addEventListener('scroll', function() {
         }
     };
 
+    const getField = (name) => {
+        const el = form.querySelector(`[name="${name}"]`);
+        return el ? (el.value || '').trim() : '';
+    };
+
+    const openMailtoDraft = ({ reason } = {}) => {
+        const fromName = getField('from_name');
+        const replyTo = getField('reply_to');
+        const message = getField('message');
+
+        const subject = `Portfolio message${fromName ? ` - ${fromName}` : ''}`;
+        const bodyLines = [
+            fromName ? `Name: ${fromName}` : null,
+            replyTo ? `Email: ${replyTo}` : null,
+            reason ? `\n---\nEmailJS issue: ${reason}` : null,
+            '\nMessage:',
+            message || '(empty)'
+        ].filter(Boolean);
+
+        const mailto = `mailto:${encodeURIComponent(FALLBACK_TO_EMAIL)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+        window.location.href = mailto;
+    };
+
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const cfg = getCfg();
         if (!cfg || !cfg.publicKey || !cfg.serviceId || !cfg.templateId || !window.emailjs) {
-            alert(
-                'Email sending is not configured yet.\n\n' +
-                '1) Copy emailjs.config.example.js -> emailjs.config.js\n' +
-                '2) Add your EmailJS publicKey/serviceId/templateId\n' +
-                '3) Refresh the page'
-            );
+            const msg =
+                'EmailJS is not configured on this site yet.\n\n' +
+                'I will open your email client instead (mailto) so you can send the message manually.';
+            alert(msg);
+            openMailtoDraft({ reason: 'Missing EmailJS config or library' });
             return;
         }
 
@@ -138,8 +162,13 @@ window.addEventListener('scroll', function() {
             form.reset();
         } catch (err) {
             console.error('EmailJS send failed:', err);
-            const details = (err && (err.text || err.message)) ? `\n\nDetails: ${err.text || err.message}` : '';
-            alert('Sorry, an error occurred while sending your message. Please try again.' + details);
+            const details = (err && (err.text || err.message)) ? (err.text || err.message) : 'Unknown error';
+            alert(
+                'EmailJS failed to send.\n\n' +
+                `Details: ${details}\n\n` +
+                'I will open your email client instead (mailto) so you can send the message manually.'
+            );
+            openMailtoDraft({ reason: details });
         } finally {
             setBtnState('idle');
         }
