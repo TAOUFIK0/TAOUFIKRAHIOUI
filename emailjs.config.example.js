@@ -3,7 +3,7 @@
 // EmailJS docs: https://www.emailjs.com/docs/
 
 window.EMAILJS_CONFIG = {
-  publicKey: 'YOUR_PUBLIC_KEY',
-  serviceId: 'YOUR_SERVICE_ID',
-  templateId: 'YOUR_TEMPLATE_ID'
+  publicKey: 'HY3LeHkoXdQatx-uc',
+  serviceId: 'service_dvwfa6h',
+  templateId: 'template_ix1jo3e'
 };
