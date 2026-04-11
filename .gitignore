@@ -1,0 +1,9 @@
+# Local secrets/config
+emailjs.config.js
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
