@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         '.skill-category',
         '.stat',
         '.timeline-content',
-        '.contact-item',
+    '.bottom-contact__item',
         '.profile-img'
     ];
 
