@@ -1,5 +1,6 @@
 # Local secrets/config
-emailjs.config.js
+# NOTE: `emailjs.config.js` is intentionally committed to enable EmailJS on GitHub Pages.
+# If you don't want to publish your EmailJS IDs, re-add this line and remove the file from git history.
 
 # OS
 .DS_Store
