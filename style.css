@@ -899,6 +899,12 @@ body {
     color: rgba(255, 255, 255, 0.7);
 }
 
+.footer-text {
+    margin: 0.65rem 0 0;
+    opacity: 0.75;
+    font-size: 0.95rem;
+}
+
 /* ===== RESPONSIVE DESIGN ===== */
 @media screen and (max-width: 768px) {
     .nav-menu {
