@@ -193,9 +193,9 @@ body {
 
 /* ===== BOTTOM CONTACT ROW ===== */
 .bottom-contact {
-    padding: 18px 0;
+    padding: 28px 0;
     border-top: 1px solid var(--border-color);
-    background: var(--background-white);
+    background: linear-gradient(180deg, var(--background-white), var(--background-light));
 }
 
 .bottom-contact__row {
@@ -203,7 +203,7 @@ body {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 10px 14px;
+    gap: 12px 14px;
     color: var(--text-primary);
     text-align: center;
 }
@@ -211,22 +211,45 @@ body {
 .bottom-contact__item {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    color: inherit;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(17, 24, 39, 0.08);
+    box-shadow: 0 6px 18px rgba(17, 24, 39, 0.06);
+    color: var(--text-primary);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
+    transition: var(--transition);
 }
 
 .bottom-contact__item i {
     color: var(--primary-color);
+    font-size: 1.05rem;
+}
+
+.bottom-contact__item span {
+    font-size: 0.98rem;
 }
 
 .bottom-contact__item:hover {
-    text-decoration: underline;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(17, 24, 39, 0.10);
 }
 
 .bottom-contact__sep {
-    color: var(--text-secondary);
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .bottom-contact {
+        padding: 22px 0;
+    }
+
+    .bottom-contact__item {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 
