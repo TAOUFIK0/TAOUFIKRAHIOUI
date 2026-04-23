@@ -538,6 +538,13 @@ body {
 .stat p {
     color: var(--text-secondary);
     font-weight: 500;
+    text-align: center;
+    white-space: normal;
+    word-spacing: normal;
+    letter-spacing: normal;
+    line-height: 1.4;
+    max-width: 22ch;
+    margin: 0 auto;
 }
 
 /* ===== SKILLS SECTION ===== */
